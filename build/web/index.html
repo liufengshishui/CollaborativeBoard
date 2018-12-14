@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- 主页css  -->
+        <link rel="stylesheet" href="css/layout.css" />
+    </head>
+    <body>
+        <div class="left">
+            <div class="appname">
+                <img  src="image/logo.png" alt="logo.png" />
+            </div>
+            <div class="menu">
+                <form name="menuInfo">
+                    <ul>
+                        <li>
+                            <input type="button" id="newFile" class="menu-button" value="新建" />
+                        </li>
+                        <li>
+                            <input type="button" id="importImage" class="menu-button" value="导入图片" />
+                        </li>
+                        <li>
+                            <input type="button" id="exportImage" class="menu-button" value="导出图片" />
+                        </li>
+                        <li>
+                            <input type="button" id="clear" class="menu-button" value="清空" />
+                        </li>
+                        <li>
+                            <input type="button" id="invite" class="menu-button" value="邀请" />
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="toolbar">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="image/tool-button-line.gif" class="toolbar-image" title="形状" />
+                        </td>
+                        <td>
+                            <img src="image/tool-button-pen.gif" class="toolbar-image" title="轮廓" />
+                        </td>
+                        <td>
+                            <img src="image/tool-button-eraser.gif" class="toolbar-image" title="橡皮擦" />
+                        </td>
+                        <td>
+                            <img src="image/tool-button-floodfill.gif" class="toolbar-image" title="油漆桶" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="image/tool-button-eyedropper.gif" class="toolbar-image" title="吸管" />
+                        </td>
+                        <td>
+                            <img src="image/tool-button-text.png" class="toolbar-image" title="文本" />
+                        </td>
+                        <td>
+                            <input type="color" class="toolbar-image" title="颜色">
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                
+            </div>
+            <div class="attribute">
+                hello
+            </div>
+        </div>
+        <div class="right">
+            <canvas id="myCanvas"  class="canvas"></canvas>
+        </div>
+        <script type="text/javascript" src="websocket.js"></script>
+    </body>
+</html>
