@@ -18,12 +18,14 @@ html, body {
     height: 100%;
 }
 
+/* 左边 div */
 .left {
     width: 220px;
     height: 100%;
     background-color: #434343;
 }
 
+/* 右边 div */
 .right {
     position: absolute;
     top: 0;
@@ -33,6 +35,14 @@ html, body {
     height: 100%;
 }
 
+/* 
+左边 div {
+  app div
+  menu div
+  toolbar div
+  attribute div
+}
+*/
 .appname {
     height: 17%;
     width: 100%;
@@ -50,10 +60,36 @@ html, body {
 }
 
 .attribute {
-    height: 20%;
-    width: 100%;
+    height: 30%;
+    width: 85%;
+    margin-left: 14px;
 }
 
+/* 
+左边 div {
+  app div {
+    img
+  }
+  menu div 
+  toolbar div 
+  attribute div
+}    
+*/
+img {
+    display:block;
+    margin:0 auto;
+}
+
+/* 
+左边 div {
+  app div
+  menu div {
+    menu-button
+  }
+  toolbar div 
+  attribute div
+}    
+*/
 .menu-button {
     height: 15%;
     width: 180px;
@@ -62,12 +98,18 @@ html, body {
     margin-right: 20px;
 }
 
-img {
-    display:block;
-    margin:0 auto;
-}
-
-.toolbar-image {
+/* 
+左边 div {
+  app div
+  menu div
+  toolbar div {
+    toolbar-image-noclicked
+    toolbar-image-clicked
+  }
+  attribute div
+}    
+*/
+.toolbar-image-noclicked {
     width: 20px;
     height: 20px;
     margin:5px 10px 0 0.1%;
@@ -80,9 +122,62 @@ img {
     background-position: center center
 }
 
+.toolbar-image-clicked {
+    width: 20px;
+    height: 20px;
+    margin:5px 10px 0 0.1%;
+    padding: 5px;
+    border:5px;
+    border-radius: 5px;
+    background-color: #00ffff;
+    background-repeat:no-repeat;
+    background-size:80% 80%;
+    background-position: center center
+}
+
+/* 
+左边 div {
+  app div
+  menu div
+  toolbar div
+  attribute div {
+    tool-attribute-show
+    tool-attribute-hidden
+  }
+}    
+*/
+.tool-attribute-show {
+    width: 98%;
+    height: 97%;
+    margin: 5px;
+    background-color: whitesmoke;
+    display: block;
+}
+
+.tool-attribute-hidden {
+    width: 98%;
+    height: 97%;
+    margin: 5px;
+    background-color: whitesmoke;
+    display: none
+}
+
+/* 
+右边 div {
+  textinput
+  canvas
+}    
+*/
 .canvas {
     width: 97%;
-    height: 97%;
+    height: 92%;
+    margin: 5px;
+    background-color: whitesmoke;
+}
+
+.textinput {
+    width: 97%;
+    height: 5%;
     margin: 5px;
     background-color: whitesmoke;
 }

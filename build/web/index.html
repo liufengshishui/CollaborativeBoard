@@ -15,9 +15,12 @@ and open the template in the editor.
     </head>
     <body>
         <div class="left">
+            
             <div class="appname">
                 <img  src="image/logo.png" alt="logo.png" />
             </div>
+            
+            <!-- 菜单项 -->
             <div class="menu">
                 <form name="menuInfo">
                     <ul>
@@ -39,44 +42,205 @@ and open the template in the editor.
                     </ul>
                 </form>
             </div>
-            <div class="toolbar">
-                <table>
+            
+            <!-- 工具脚本 -->
+            <script type="text/javascript" src="collaborativeboard.js"></script>
+            
+            <!-- 工具项 -->
+            <div class="toolbar" id="toolbar">
+                <table id="toolbar_list">
                     <tr>
                         <td>
-                            <img src="image/tool-button-line.gif" class="toolbar-image" title="形状" />
+                            <img src="image/tool-button-line.gif" class="toolbar-image-clicked"
+                                 title="形状" onclick="shape_tool_selected()" id="shape_tool"/>
                         </td>
                         <td>
-                            <img src="image/tool-button-pen.gif" class="toolbar-image" title="轮廓" />
+                            <img src="image/tool-button-pen.gif" class="toolbar-image-noclicked" 
+                                 title="画笔" onclick="pen_tool_selected()" id="pen_tool"/>
                         </td>
                         <td>
-                            <img src="image/tool-button-eraser.gif" class="toolbar-image" title="橡皮擦" />
+                            <img src="image/tool-button-eraser.gif" class="toolbar-image-noclicked" 
+                                 title="橡皮擦" onclick="eraser_tool_selected()" id="eraser_tool"/>
                         </td>
                         <td>
-                            <img src="image/tool-button-floodfill.gif" class="toolbar-image" title="油漆桶" />
+                            <img src="image/tool-button-floodfill.gif" class="toolbar-image-noclicked" 
+                                 title="油漆桶" onclick="floodfill_tool_selected()" id="floodfill_tool"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <img src="image/tool-button-eyedropper.gif" class="toolbar-image" title="吸管" />
+                            <img src="image/tool-button-eyedropper.gif" class="toolbar-image-noclicked" 
+                                 title="吸管" onclick="eyedropper_tool_selected()" id="eyedropper_tool"/>
                         </td>
                         <td>
-                            <img src="image/tool-button-text.png" class="toolbar-image" title="文本" />
+                            <img src="image/tool-button-text.png" class="toolbar-image-noclicked" 
+                                 title="文本" onclick="text_tool_selected()" id="text_tool"/>
                         </td>
                         <td>
-                            <input type="color" class="toolbar-image" title="颜色">
+                            <input type="color" class="toolbar-image-noclicked" title="颜色"
+                                   onclick="color_tool_selected()" id="color_tool">
                         </td>
                         <td></td>
                     </tr>
                 </table>
-                
             </div>
-            <div class="attribute">
-                hello
+            
+            <!-- 属性面板项 -->
+            <div class="attribute" id="attributePanel">
+                
+                <!-- 形状属性面板 -->
+                <div class="tool-attribute-show" id="shape_attribute_panel">
+                    <form name="inputForm">
+                        <table>
+                            <tr>
+                                <td>Attributes </td>
+                            </tr>
+                            <tr>
+                                <td>- </td>
+                            </tr>
+                            <tr>
+                                <th>shape ：</th>
+                                <td>
+                                    <select>
+                                        <option value="line">直线</option>
+                                        <option value="rectangle">矩形</option>
+                                        <option value="ellipse">椭圆</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> -</td>
+                            </tr>
+                            <tr>
+                                <th>size ：</th>
+                                <td><input type="text" name="text" value="11" style="width: 40%"></td>
+                            </tr>
+                            <tr>
+                                <td>- </td>
+                            </tr>
+                            <tr>
+                                <th>color ：</th>
+                                <td><input type="color" class="toolbar-image" title="颜色" style="width: 40%"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                
+                <!-- 画笔属性面板 -->
+                <div class="tool-attribute-hidden" id="pen_attribute_panel">
+                    <form name="inputForm">
+                        <table>
+                            <tr>
+                                <td>Attributes </td>
+                            </tr>
+                            <tr>
+                                <td> -</td>
+                            </tr>
+                            <tr>
+                                <th>size ：</th>
+                                <td><input type="text" name="text" value="11" style="width: 40%"></td>
+                            </tr>
+                            <tr>
+                                <td>- </td>
+                            </tr>
+                            <tr>
+                                <th>color ：</th>
+                                <td><input type="color" class="toolbar-image" title="颜色" style="width: 40%"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                
+                <!-- 橡皮擦属性面板 -->
+                <div class="tool-attribute-hidden" id="eraser_attribute_panel">
+                    <form name="inputForm">
+                        <table>
+                            <tr>
+                                <td style="margin-left: 10px">Attributes </td>
+                            </tr>
+                            <tr>
+                                <td> -</td>
+                            </tr>
+                            <tr>
+                                <th style="width: 50%">size ：</th>
+                                <td><input type="text" name="text" value="11" style="width: 40%"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                
+                <!-- 吸管属性面板 -->
+                <div class="tool-attribute-hidden"  id="eyedropper_attribute_panel">
+                    eyedropper-tool
+                </div>
+                
+                <!-- 油漆桶属性面板 -->
+                <div class="tool-attribute-hidden"  id="floodfill_attribute_panel">
+                    floodfill-tool
+                </div>
+                
+                <!-- 颜色属性面板 -->
+                <div class="tool-attribute-hidden"  id="color_attribute_panel">
+                    color-tool
+                </div>
+                
+                <!-- 文本属性面板 -->
+                <div class="tool-attribute-hidden"  id="text_attribute_panel">
+                    <form name="inputForm">
+                        <table>
+                            <tr>
+                                <td style="margin-left: 10px">Attributes </td>
+                            </tr>
+                            <tr>
+                                <td> -</td>
+                            </tr>
+                                <th>font ：</th>
+                                <td style="width: 20%">
+                                    <select>
+                                        <option value="MingLiU">细明体</option>
+                                        <option value="DFKai-SB">标楷体</option>
+                                        <option value="SimHei">黑体</option>
+                                        <option value="SimSun">宋体</option>
+                                        <option value="NSimSun">新宋体</option>
+                                        <option value="FangSong">仿宋</option>
+                                        <option value="KaiTi">楷体</option>
+                                        <option value="Microsoft JhengHei">微软正黑</option>
+                                        <option value="Microsoft YaHei">微软雅黑</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> -</td>
+                            </tr>
+                            <tr>
+                                <th>size ：</th>
+                                <td><input type="text" name="text" value="11" style="width: 40%"></td>
+                            </tr>
+                            <tr>
+                                <td>- </td>
+                            </tr>
+                            <tr>
+                                <th>color ：</th>
+                                <td><input type="color" class="toolbar-image" title="颜色" style="width: 40%"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
             </div>
         </div>
+        
+        <!-- 画布项 -->
         <div class="right">
+            
+            <!-- 文本输入区 -->
+            <textarea class="textinput" id="textInput" onkeyup="SwapTxt()"></textarea>
+            
+            <!-- 画布区 -->
             <canvas id="myCanvas"  class="canvas"></canvas>
         </div>
+        
+        <!-- 客户端与服务器端通信脚本 -->
         <script type="text/javascript" src="websocket.js"></script>
+        
     </body>
 </html>
