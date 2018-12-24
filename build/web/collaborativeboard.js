@@ -3,8 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
+ * 
+ * @type String 基本属性
+ */
 
-var tool_selected = 'shape';
+// 工具类型
+var tool_selected = 'shape';    
+
+// pen 属性表
+var pen_size = 1;
+var pen_color = "#000000";
 
 function shape_tool_selected (evt) {
     /* 属性面板选择 */
@@ -168,37 +177,42 @@ function color_tool_selected (evt) {
     tool_selected = 'color';
 }
 
+// 颜色变化响应函数
+function colorchange() {
+    var pen_color_select = document.querySelector("pen_color");
+    pen_color_select.click();  //出现问题处
+    pen_color = pen_color_select.value;
+}
+
 var canvas;
 var context;
+var width;
+var height;
+
 // 初始化
-window.onload = function() {
+window.onload = init;
+function init() {
     // 获取画布已经绘图上下文
     canvas = document.getElementById("myCanvas");
-    context = canvas.getContext("2d");
-    context.lineWidth = 10;
+    
+    //  计算画布的宽度
+    width = canvas.offsetWidth,
+    //  计算画布的高度
+    height = canvas.offsetHeight,
+    context = canvas.getContext('2d')
+    //  设置宽高
+    canvas.width = width;
+    canvas.height = height;
+    
+    console.log(pen_size);
+    context.lineWidth = pen_size;
     context.strokeStyle = 'rgba(0,0,0,0.5)';//设置画笔颜色
-    switch (tool_selected) {
-        case 'shape':
-            canvas.onmousedown = shapeStart;
-            canvas.onmouseup = shapeStop;
-            canvas.onmouseout = shapeStop;
-            canvas.onmousemove = shapeDraw;
-            break;
-        case 'shape':
-            break;
-        case 'shape':
-            break;
-        case 'shape':
-            break;
-        case 'shape':
-            break;
-        case 'shape':
-            break;
-        case 'shape':
-            break;
-        default:
-            
-    }
+    
+    // 添加事件监听
+    canvas.onmousedown = shapeStart;
+    canvas.onmouseup = shapeStop;
+    canvas.onmouseout = shapeStop;
+    canvas.onmousemove = shapeDraw;
 };
 
 // 记录当前是否在画图
@@ -213,29 +227,194 @@ function getCurrentPos(evt) {
 }
 
 function shapeStart(evt) {
-    isDrawing = true;
-    // 创建一个新的绘图路径
+    switch (tool_selected) {
+        case "shape":
+            break;
+        case "pen":
+            console.log(tool_selected);
+    
+            isDrawing = true;
+            
+            
+            // 获取画笔属性
+            var pen_size_select = document.getElementById("pen_size");
+            var pen_size_index = pen_size_select.selectedIndex ;
+            pen_size = parseInt(pen_size_select.options[pen_size_index].value);
+            
+            console.log(document.getElementById("pen_color").value);
+            pen_color = document.getElementById("pen_color").value;
+            
+            context.lineWidth = pen_size;
+            context.strokeStyle = pen_color;//设置画笔颜色
+            
+            // 创建一个新的绘图路径
+            context.beginPath();
+            // 把画笔移动到鼠标位置
+            var x = parseInt(getCurrentPos(evt).x);
+            var y = parseInt(getCurrentPos(evt).y);
+            console.log(x + "    " + y);
+            context.moveTo(x, y);
+
+            var json = JSON.stringify({
+                isDrawing: true,
+                type: "start",
+                "coords": {
+                    "x": x,
+                    "y": y
+                }
+            });
+            sendText(json);
+            break; 
+        case "eraser":
+            break; 
+        case "floodfill":
+            break; 
+        case "eyedropper":
+            break; 
+        case "text":
+            break; 
+        case "color":
+            break; 
+        default:
+            
+    }
+}
+
+function endPointStart(json) {
+    switch (tool_selected) {
+        case "shape":
+            break;
+        case "pen":
+            break; 
+        case "eraser":
+            break; 
+        case "floodfill":
+            break; 
+        case "eyedropper":
+            break; 
+        case "text":
+            break; 
+        case "color":
+            break; 
+        default:
+            
+    }
+    console.log(tool_selected);
+    isDrawing = json.isDrawing;
     context.beginPath();
-    // 把画笔移动到鼠标位置
-    var x = parseInt(getCurrentPos(evt).x);
-    var y = parseInt(getCurrentPos(evt).y);
-    context.moveTo(x, y);
+    context.moveTo(json.coords.x, json.coords.y);
 }
 
 function shapeStop(evt) {
-    isDrawing = false;
+    switch (tool_selected) {
+        case "shape":
+            break;
+        case "pen":
+            isDrawing = false;
+            var json = JSON.stringify({
+                isDrawing: false,
+                type: "stop"
+            });
+            sendText(json);
+            break; 
+        case "eraser":
+            break; 
+        case "floodfill":
+            break; 
+        case "eyedropper":
+            break; 
+        case "text":
+            break; 
+        case "color":
+            break; 
+        default:
+            
+    }
+}
+
+function endPointStop(json) {
+    switch (tool_selected) {
+        case "shape":
+            break;
+        case "pen":
+            break; 
+        case "eraser":
+            break; 
+        case "floodfill":
+            break; 
+        case "eyedropper":
+            break; 
+        case "text":
+            break; 
+        case "color":
+            break; 
+        default:
+            
+    }
+    isDrawing = json.isDrawing;
 }
 
 function shapeDraw(evt) {
-    if (isDrawing === true) {
-        // 找到鼠标最新位置
-        var x = parseInt(getCurrentPos(evt).x);
-        var y = parseInt(getCurrentPos(evt).y);
-        // 画一条直线到鼠标最新位置
-        context.lineTo(x, y);
-        context.stroke();  
+    switch (tool_selected) {
+        case "shape":
+            break;
+        case "pen":
+            if (isDrawing === true) {
+                // 找到鼠标最新位置
+                var x = parseInt(getCurrentPos(evt).x);
+                var y = parseInt(getCurrentPos(evt).y);
+                // 画一条直线到鼠标最新位置
+                console.log(x + "    " + y);
+                context.lineTo(x, y);
+                context.stroke();  
+                var json = JSON.stringify({
+                    type: "draw",
+                    "coords": {
+                        "x": x,
+                        "y": y
+                    }
+                });
+                sendText(json);
+            }
+            break; 
+        case "eraser":
+            break; 
+        case "floodfill":
+            break; 
+        case "eyedropper":
+            break; 
+        case "text":
+            break; 
+        case "color":
+            break; 
+        default:
+            
     }
 }
+
+function endPointDraw(json) {
+    switch (tool_selected) {
+        case "shape":
+            break;
+        case "pen":
+            break; 
+        case "eraser":
+            break; 
+        case "floodfill":
+            break; 
+        case "eyedropper":
+            break; 
+        case "text":
+            break; 
+        case "color":
+            break; 
+        default:
+            
+    }
+    context.lineTo(json.coords.x, json.coords.y);
+    context.stroke();  
+}
+
 //// 开始画图
 //function startDrawing(e) {
 //}
