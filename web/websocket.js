@@ -19,7 +19,6 @@ function onError (evt) {
 websocket.onmessage = function(evt) { onMessage(evt); };
 
 function sendText(json) {
-    console.log("sending text: " + json);
     websocket.send(json);
 }
 

@@ -25,7 +25,7 @@ public class collaborativeBoardEndPoint {
     private static Set<Session> peers = Collections.synchronizedSet(new 
         HashSet<Session>());
     
-   @OnMessage
+    @OnMessage
     public void broadcastFigure(Figure figure, Session session) throws IOException, EncodeException {
         System.out.println("broadcastFigure: " + figure);
         for (Session peer : peers) {
