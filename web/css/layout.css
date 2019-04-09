@@ -21,19 +21,30 @@ html, body {
 /* 左边 div */
 .left {
     width: 220px;
-    height: 938px;
+    height: 850px;
     background-color: #434343;
 }
+
+/* 中间 div */
+.center {
+    position: absolute;
+    top: 0;
+    left: 220px;
+    background-color: #484848;
+    width: 280px;
+    height: 850px;
+}
+
 
 /* 右边 div */
 .right {
     position: absolute;
     top: 0;
-    left: 220px;
+    left: 500px;
     right: 0;
     background-color: #222222;
-    width: 1700px;
-    height: 938px;
+    width: 1300px;
+    height: 850px;
 }
 
 /* 
@@ -181,4 +192,42 @@ img {
     height: 5%;
     margin: 5px;
     background-color: whitesmoke;
+}
+
+.chat-room {
+    margin: 10px;
+}
+
+.username-textarea {
+    width: 90%;
+    height: 30px;
+    font-size: 20px;
+    resize: none;
+    margin: 10px;
+    background-color: #9f9f9f;
+}
+
+.meesage-list-room {
+    width: 90%;
+    height: 400px;
+    margin: 10px;
+    font-size: 20px;
+    resize: none;
+    background-color: #9f9f9f;
+    line-height:1.5;
+}
+
+.meesage-room {
+    width: 90%;
+    height: 50px;
+    margin: 10px;
+    resize: none;
+    background-color: #9f9f9f;
+}
+
+.send-message-button {
+    height: 30px;
+    width: 50%;
+    margin-left: 60px;
+    margin-right: 20px;
 }

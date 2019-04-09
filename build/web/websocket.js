@@ -25,14 +25,23 @@ function sendText(json) {
 function onMessage(evt) {
     console.log("received: " + evt.data);
     var json = JSON.parse(evt.data);
-    if (json.type === "start") {
-        endPointStart(json);
+    if (json.tool === 'chat_room') {
+        showMessage(json.message);
     }
-    else if (json.type === "draw") {
-        endPointDraw(json);
+    else if (json.tool === 'import_image') {
+        drawImage(json.image);
     }
     else {
-        endPointStop(json);
+        if (json.type === "start") {
+            endPointStart(json);
+        }
+        else if (json.type === "draw") {
+            endPointDraw(json);
+        }
+        else {
+            endPointStop(json);
+        }
     }
+    
 }
 

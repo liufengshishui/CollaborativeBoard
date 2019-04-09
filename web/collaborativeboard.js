@@ -834,3 +834,20 @@ function endPointDraw(json) {
             
     }
 }
+
+function showMessage(message) {
+    var old_str = document.getElementById("message-list").value;
+    var str = old_str + '\n' + message;
+    document.getElementById("message-list").value = str;
+    document.getElementById("message-list").scrollTop = document.getElementById("message-list").scrollHeight;
+}
+
+function drawImage(image) {
+    var cvs = document.getElementById('myCanvas');
+    var ctx = cvs.getContext('2d');
+    var img = new Image;
+    img.src = image;
+    img.onload = function(){//必须onload之后再画
+        ctx.drawImage(img, 0, 0, 400, 400);
+    };
+}

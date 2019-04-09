@@ -12,6 +12,7 @@ and open the template in the editor.
         <!-- 主页css  -->
         <link rel="stylesheet" href="css/layout.css" />
     </head>
+    
     <body>
         <div class="left">
             
@@ -27,10 +28,11 @@ and open the template in the editor.
                             <input type="button" id="newFile" class="menu-button" value="新建" />
                         </li>
                         <li>
-                            <input type="button" id="importImage" class="menu-button" value="导入图片" />
+                            <input type="button" id="importImage" class="menu-button" value="导入图片" onclick="upfile.click()" />
+                            <input type="file" id="upfile" onchange="uploadFile()" style="visibility: hidden; position: absolute;">
                         </li>
                         <li>
-                            <input type="button" id="exportImage" class="menu-button" value="导出图片" />
+                            <input type="button" id="exportImage" class="menu-button" value="导出图片" onclick="saveFile()" />
                         </li>
                         <li>
                             <input type="button" id="clear" class="menu-button" value="清空" />
@@ -40,6 +42,7 @@ and open the template in the editor.
                         </li>
                     </ul>
                 </form>
+                
             </div>
             
             <!-- 工具项 -->
@@ -286,6 +289,29 @@ and open the template in the editor.
             </div>
         </div>
         
+        <!--聊天室-->
+        <div class="center">
+            <div class="chat-room" >
+                <div>
+                    <label style="font-size: 30px"> Chat Room </label>
+                </div>
+                
+                <div class="user-room">
+                    <label style="font-size: 20px"> User Name: </label>
+                </div>
+                
+                <textarea id="username" class="username-textarea"></textarea>
+                
+                <textarea id="message-list" class="meesage-list-room"  readonly="readonly" ></textarea>
+                
+                <textarea id="message" class="meesage-room"></textarea>
+                
+                <input type="button" id="send-message" class="send-message-button" onclick="send_message()" value="发送" />
+                
+            </div>
+            <script type="text/javascript" src="chat.js"></script>
+        </div>
+        
         <!-- 画布项 -->
         <div class="right">
             <form name="textInputForm">
@@ -300,9 +326,40 @@ and open the template in the editor.
         
         <!-- 客户端与服务器端通信脚本 -->
         <script type="text/javascript" src="websocket.js"></script>
-        
-        
-            
+        <!--<script type="text/javascript" src="menuCallback.js"></script>-->
         
     </body>
+    
+<script>
+document.getElementById('upfile').onchange = function() {
+    var imgFile = this.files[0];
+    var fr = new FileReader();
+    fr.readAsDataURL(imgFile);
+    fr.onload = function() {
+        var cvs = document.getElementById('myCanvas');
+        var ctx = cvs.getContext('2d');
+        var img = new Image;
+        img.src = fr.result;
+
+        img.onload = function(){//必须onload之后再画
+            ctx.drawImage(img,0,0,400,400);
+            var json = JSON.stringify({
+                tool: "import_image",
+                image: fr.result
+            });
+            sendText(json);
+        }
+    };
+};
+
+function saveFile() {
+    var canvas = document.getElementById('myCanvas');
+    var str = canvas.toDataURL();
+    var a = document.createElement('a');
+    a.href = str;
+    a.download = 'a.png';
+    a.click();
+}
+</script>
+    
 </html>
