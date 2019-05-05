@@ -11,6 +11,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- 主页css  -->
         <link rel="stylesheet" href="css/layout.css" />
+        
+        <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
     </head>
     
     <body>
@@ -296,6 +298,11 @@ and open the template in the editor.
                     <label style="font-size: 30px"> Chat Room </label>
                 </div>
                 
+                <div class="video-room">
+                    <video id="localVideo" autoplay muted></video>
+                    <video id="remoteVideo" autoplay></video>
+                </div>
+                
                 <div class="user-room">
                     <label style="font-size: 20px"> User Name: </label>
                 </div>
@@ -327,7 +334,7 @@ and open the template in the editor.
         <!-- 客户端与服务器端通信脚本 -->
         <script type="text/javascript" src="websocket.js"></script>
         <!--<script type="text/javascript" src="menuCallback.js"></script>-->
-        
+        <!--<script src="script.js"></script>-->
     </body>
     
 <script>

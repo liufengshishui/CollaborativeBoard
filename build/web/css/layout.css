@@ -231,3 +231,17 @@ img {
     margin-left: 60px;
     margin-right: 20px;
 }
+
+
+.video-room {
+    display: flex;
+    height: 100px;
+    width: 200px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+video {
+    width: 100px;
+    height: 100px;
+    background-color: whitesmoke;  
+}
